@@ -27,14 +27,11 @@
                 <td>{{ $book->type->name }}</td>
                 @if(Auth::check())
                 <td>
-                    <form method="post" action="/book/{{ $book->id }}">
-                      <div>
-                        {{ method_field('DELETE') }}
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </form>
-                    <button type="button" class="btn btn-info">Edit</button>
-                    </div>
+                  <form method="post" action="/book/{{ $book->id }}">                      {{ method_field('DELETE') }}
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <button class="btn btn-danger">Delete</button>
+                  </form>
+                  <button class="btn btn-info">Edit</button>
                 </td>
                 @endif
               </tr>
