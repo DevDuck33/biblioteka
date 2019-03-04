@@ -26,7 +26,7 @@ class AuthorController extends Controller
 
       Author::Create($request->all());
 
-        return redirect()->route('author.create');
+        return redirect()->back();
     }
 
     public function show($id)

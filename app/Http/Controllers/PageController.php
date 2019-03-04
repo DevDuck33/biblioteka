@@ -8,7 +8,8 @@ class PageController extends Controller
 {
     public function home()
     {
-      return view('index');
+      $data['books'] = \App\Book::Get();
+      return view('index')->with('data', $data);
     }
 
     public function userPanel()

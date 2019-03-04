@@ -10,7 +10,7 @@
   <body>
     <div class="container">
       <div class="row">
-        <table class="table">
+        <table class="table table-bordered table-striped">
           <thead>
             <tr>
               <th scope="col">Title</th>
@@ -20,15 +20,25 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Brzechwa dziecia</td>
-              <td>Jan Brzechwa</td>
-              <td>Bajka</td>
-              <td>
-                <button>Delete</button>
-                <button>Edit</button>
-              </td>
-            </tr>
+            @foreach($data['books'] as $book)
+              <tr>
+                <td>{{ $book->title }}</td>
+                <td>{{ $book->author->firstname }} {{ $book->author->lastname }}</td>
+                <td>{{ $book->type->name }}</td>
+                @if(Auth::check())
+                <td>
+                    <form method="post" action="/book/{{ $book->id }}">
+                      <div>
+                        {{ method_field('DELETE') }}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </form>
+                    <button type="button" class="btn btn-info">Edit</button>
+                    </div>
+                </td>
+                @endif
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

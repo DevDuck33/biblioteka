@@ -25,7 +25,7 @@ class TypeController extends Controller
 
     Type::Create($request->all());
 
-      return redirect()->route('type.create');
+      return redirect()->back();
   }
 
   public function show($id)

@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <a href="{{ route('author.create') }}">Dodaj autora</a>
+                    <a href="{{ route('type.create') }}">Dodaj kategorię</a>
+                    <a href="{{ route('book.create') }}">Dodaj książkę</a>
+
                 </div>
             </div>
         </div>
