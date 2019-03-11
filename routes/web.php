@@ -13,9 +13,9 @@
 
 Route::get('/', 'PageController@home');
 
-Auth::routes();
+Route::get('/search', 'PageController@search')->name('page.search');
 
-Route::get('/home', 'PageController@userPanel')->middleware('auth')->name('home');
+Auth::routes();
 
 // AuthorController
 

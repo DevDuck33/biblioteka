@@ -17,8 +17,8 @@ class BookController extends Controller
 
   public function create()
   {
-      $data['authors'] = Author::Get();
-      $data['types'] = Type::Get();
+      $data['authors'] = Author::All();
+      $data['types'] = Type::All();
       return view('book.create')->with('data', $data);
   }
 
