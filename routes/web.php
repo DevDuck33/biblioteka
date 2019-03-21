@@ -17,22 +17,29 @@ Route::get('/search', 'PageController@search')->name('page.search');
 
 Auth::routes();
 
-// AuthorController
+Route::middleware(['auth'])->group(function () {
+  // AuthorController
 
-Route::get('/author/create', 'AuthorController@create')->name('author.create')->middleware('auth');
+  Route::get('/author/create', 'AuthorController@create')->name('author.create');
 
-Route::post('/author', 'AuthorController@store')->name('author.store')->middleware('auth');
+  Route::post('/author', 'AuthorController@store')->name('author.store');
 
-// TypeController
+  // TypeController
 
-Route::get('/type/create', 'TypeController@create')->name('type.create')->middleware('auth');
+  Route::get('/type/create', 'TypeController@create')->name('type.create');
 
-Route::post('/type', 'TypeController@store')->name('type.store')->middleware('auth');
+  Route::post('/type', 'TypeController@store')->name('type.store');
 
-// BookController
+  // BookController
 
-Route::get('/book/create', 'BookController@create')->name('book.create')->middleware('auth');
+  Route::get('/book/create', 'BookController@create')->name('book.create');
 
-Route::post('/book', 'BookController@store')->name('book.store')->middleware('auth');
+  Route::post('/book', 'BookController@store')->name('book.store');
 
-Route::delete('/book/{id}', 'BookController@destroy')->name('book.destroy')->middleware('auth');
+  Route::delete('/book/{id}', 'BookController@destroy')->name('book.destroy');
+
+  Route::get('/book/{id}/edit', 'BookController@edit')->name('book.edit');
+
+  Route::patch('/book/{id}', 'BookController@update')->name('book.update');
+
+});

@@ -10,10 +10,6 @@ use App\Author;
 
 class BookController extends Controller
 {
-  public function index()
-  {
-
-  }
 
   public function create()
   {
@@ -42,12 +38,27 @@ class BookController extends Controller
 
   public function edit($id)
   {
-      //
+      $data['book'] = Book::find($id);
+      $data['authors'] = Author::All();
+      $data['types'] = Type::All();
+      return view('book.edit',compact('data'))->with('data', $data);
   }
 
   public function update(Request $request, $id)
   {
-      //
+    $request->validate([
+      'title' => 'required|string|max:100',
+      'author_id' => 'required|integer',
+      'type_id' => 'required|integer'
+    ]);
+
+    $book = Book::find($id);
+    $book->title = $request->get('title');
+    $book->author_id = $request->get('author_id');
+    $book->type_id = $request->get('type_id');
+    $book->save();
+
+    return redirect('/')->with('success', 'Book has been updated');
   }
 
   public function destroy($id)

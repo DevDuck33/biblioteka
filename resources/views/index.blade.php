@@ -13,7 +13,7 @@
                   @endforeach
                 </select>
 
-                <label>Type</label>
+                <label>Search Type</label>
                 <select class="form-control" name="type_id">
                   <option disabled selected value> -- select an option -- </option>
                   @foreach ($data['types'] as $type)
@@ -47,10 +47,21 @@
                 @if(Auth::check())
                   @if(Auth::user()->admin)
                   <td>
-                    <form method="post" action="/book/{{ $book->id }}">                      {{ method_field('DELETE') }}
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
+                    <div class="row">
+                      <div class="col-2">
+                        <form method="POST" action="{{ route('book.destroy', $book->id) }}">
+                            {{ method_field('DELETE') }}
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                      </div>
+                      <div class="col">
+                        <form method="GET" action="{{ route('book.edit', $book->id) }}">
+                            <button class="btn btn-primary">Edit</button>
+                        </form>
+                      </div>
+                    </div>
                   </td>
                   @endif
                 @endif
